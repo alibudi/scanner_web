@@ -50,7 +50,7 @@ class Home extends CI_Controller {
 		$this->load->view('template/template',$data);
 	}
 
-		 public function profil(){
+ 	public function profil(){
 		$data['user'] = $this->ion_auth->user()->row();
 		$data['id_user'] 	  = $data['user']->username;
 		$id_user 	  = $data['user']->id;
@@ -183,6 +183,61 @@ where pic.id='$id_pic'";
 	    $randomString .= $characters[rand(0, $charactersLength - 1)];
 	  }
 	  return $randomString;
+	}
+
+	public function tenan()
+	{
+		$data['user'] 		= $this->ion_auth->user()->row();
+		$data['id_user'] 	  = $data['user']->username;
+		$data['main']		= 'tenan/detail';
+		$this->load->view('template/template',$data);
+	}
+
+	public function addTenan()
+	{
+		//set validasi
+        $this->form_validation->set_rules('id_tenan','Id Tenan','required');
+        $this->form_validation->set_rules('nama','Nama','required');
+
+        if($this->form_validation->run() == TRUE){
+
+            $data = array(
+                'id_tenan' => $this->input->post("id_tenan"),
+                'nama'     => $this->input->post("nama"),
+            );
+
+            $simpan = $this->ModelScanner->AddTenan($data);
+
+            if($simpan) {
+
+                header('Content-Type: application/json');
+                echo json_encode(
+                    array(
+                        'success' => true,
+                        'message' => 'Data Berhasil Disimpan!'
+                    )
+                );
+
+            } else{
+                header('Content-Type: application/json');
+                echo json_encode(
+                    array(
+                        'success' => false,
+                        'message' => 'Data Gagal Disimpan!'
+                    )
+                );
+            }
+
+        }else{
+            header('Content-Type: application/json');
+            echo json_encode(
+                array(
+                    'success'    => false,
+                    'message'    => validation_errors()
+                )
+            );
+
+        }
 	}
 
 }

@@ -1,6 +1,7 @@
 <?php 
 date_default_timezone_set("Asia/Jakarta");
-$tomorrow=date('Y-m-d');
+$tomorrow=date('Y-m-d h:i:s');
+// echo $tomorrow;
  ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

@@ -174,7 +174,7 @@ $sekarang=date('Y-m-d H:i:s');
                 });
 
               xhr.open("GET", url+jumlah+url2);
-
+              Alert("Data sudah ada");
               xhr.send();
             }
         }

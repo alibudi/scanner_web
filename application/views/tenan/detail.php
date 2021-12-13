@@ -29,17 +29,7 @@ $sekarang=date('Y-m-d H:i:s');
                 </div>
             <?php } ?>
    -->
-    <script type="text/javascript">
-
-      $(document).ready(function(){
-          $("#Male").on('click',function(){
-            alert("Male");
-          });
-          $("#Female").on('click',function(){
-            alert("Female");
-          });
-        });
-    </script>
+    
             <form class="form-horizontal" method="post" action="<?php echo site_url('home/addSnack') ?>">
               <div class="form-group">
                 <div id="qr-reader"></div>
@@ -57,7 +47,7 @@ $sekarang=date('Y-m-d H:i:s');
               <div class="form-group">
                 <label for="username" class="col-sm-3 control-label">Nama</label>
                 <div class="col-sm-9">
-                  <input type="text" name="nama" id="nama"  class="form-control" placeholder="Nama" disabled>
+                  <input type="text" name="nama" id="code_tenan"  class="form-control" placeholder="Nama" disabled>
                 </div>
               </div>
 
@@ -127,8 +117,9 @@ $sekarang=date('Y-m-d H:i:s');
                 ++countResults;
                 lastResult = decodedText;
                 var codee =  document.getElementById('result').innerHTML = decodedText;
-                var jumlah = codee.slice(codee.length - 5) - 10000;
-                // console.log(jumlah);
+                var jumlah = codee.slice(codee.length - 5) - 90000;
+                // console.log(code);
+                console.log(jumlah);
                 document.getElementById('codee').value = jumlah
       
                 // fetch('https://muslim.hops.id/api/tiket.php?id='+codee)
@@ -136,8 +127,8 @@ $sekarang=date('Y-m-d H:i:s');
                 // .then(data => console.log(data));
 
                 var xhr = new XMLHttpRequest();
-                var url = "http://localhost/panitia/api/tiket.php?id=";
-                var url2 = "&kegiatan=masuk";
+                var url = "http://localhost/panitia/Api/detailTenan/";
+                // var url2 = "&kegiatan=masuk";
                 xhr.withCredentials = true;
                 console.log("cek");
                 xhr.addEventListener("readystatechange", function() {
@@ -146,25 +137,25 @@ $sekarang=date('Y-m-d H:i:s');
                       // console.log(json.parse(this.responseText));
                       // console.log();
                       let tiket = JSON.parse(this.responseText);
-                      let nama = "";
-                      let status = "";
+                      let random_code = "";
+                      let code_tenan = "";
                       // console.log(tiket);
                       tiket.forEach(function(daftar){
-                        nama +=`${daftar.nama}`;
-                        status +=`${daftar.status}`;
+                        random_code +=`${daftar.random_code}`;
+                        code_tenan +=`${daftar.code_tenan}`;
                         console.log(nama);
                         console.log(status);
                       });
 
                       // var b = JSON.parse(this.responseText[0].nama);
                       // console.log(b);
-                    document.getElementById('nama').value = nama;
-                    document.getElementById('status').value = status;
+                    document.getElementById('nama').value = random_code;
+                    document.getElementById('status').value = code_tenan;
                
                   } 
                 });
 
-              xhr.open("GET", url+jumlah+url2);
+              xhr.open("GET", url+jumlah);
 
               xhr.send();
 
