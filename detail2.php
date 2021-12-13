@@ -72,7 +72,7 @@
                 </div>                
               </div>
 
-          <div class="form-group">
+<div class="form-group">
                 <label for="username" class="col-sm-3 control-label">Jumlah Tiket Hari ke 2</label>
                 <div class="col-sm-9">
                   <input type="text" name="nohp" value="<?php echo $tiket->note_2 ?>" class="form-control" placeholder="0" disabled>
@@ -80,7 +80,7 @@
                 </div>                
               </div>
 
-          <div class="form-group">
+<div class="form-group">
                 <label for="username" class="col-sm-3 control-label">Jumlah Tiket Hari ke </label>
                 <div class="col-sm-9">
                   <input type="text" name="nohp" value="<?php echo $tiket->note_3 ?>" class="form-control" placeholder="0" disabled>
@@ -98,9 +98,10 @@
 
     <?php
       $hilangnyaBackslash = stripslashes($qrnya);
-      $ubahLinknya = str_replace('C:laragonwwwpanitia', '', $hilangnyaBackslash);
+      $ubahLinknya = str_replace('/var/www/html/panitia//', '', $hilangnyaBackslash);
       $srcLink = base_url() . $ubahLinknya;
     ?>
+    <?php echo $srcLink ?>
 <!-- <?php print_r($statusTicket) ?>  -->
 
     <div class="col-md-12">
@@ -155,7 +156,7 @@
                        <td><?php echo $d['note_2'] ?></td>
                        <td><?php echo $d['note_3'] ?></td>
                         <td><?php echo $d['waktu_pembelian'] ?></td>
-                        <td> <a href="<?php echo "https://hops.id/muslimafest/".$d['order_id'].$d['random_code'].$d['tiket_id'].".pdf"?>"><i class="fa fa-eye"></i></a></td>
+                     <td> <a href="<?php echo "https://hops.id/muslimafest/".$d['order_id'].$d['random_code'].$d['tiket_id'].".pdf"?>"><i class="fa fa-eye"></i></a></td>
                   </tr>
                   <?php }
                     } else { ?>

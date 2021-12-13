@@ -9,7 +9,7 @@
     <div class="col-md-12">
       <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Tambah Tiket</h3>
+            <h3 class="box-title">Detail Tiket</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -72,7 +72,7 @@
                 </div>                
               </div>
 
-          <div class="form-group">
+<div class="form-group">
                 <label for="username" class="col-sm-3 control-label">Jumlah Tiket Hari ke 2</label>
                 <div class="col-sm-9">
                   <input type="text" name="nohp" value="<?php echo $tiket->note_2 ?>" class="form-control" placeholder="0" disabled>
@@ -80,7 +80,7 @@
                 </div>                
               </div>
 
-          <div class="form-group">
+<div class="form-group">
                 <label for="username" class="col-sm-3 control-label">Jumlah Tiket Hari ke </label>
                 <div class="col-sm-9">
                   <input type="text" name="nohp" value="<?php echo $tiket->note_3 ?>" class="form-control" placeholder="0" disabled>
@@ -138,8 +138,6 @@
                           <th>Hari 3</th>
                           <th>Waktu Pembelian</th>
                           <th>Barcode</th>
-                          <!-- <th>Foto</th> -->
-                          <!-- <th style="text-align: center;">Aksi</th> -->
                       </tr>
                   </thead>
                   <tbody>
@@ -155,9 +153,9 @@
                        <td><?php echo $d['note_2'] ?></td>
                        <td><?php echo $d['note_3'] ?></td>
                         <td><?php echo $d['waktu_pembelian'] ?></td>
-                        <td> <a href="<?php echo "https://hops.id/muslimafest/".$d['order_id'].$d['random_code'].$d['tiket_id'].".pdf"?>"><i class="fa fa-eye"></i></a></td>
+                        <td> <a target="_blank" href="https://www.hops.id/muslimafest/<?php echo $d['order_id']?><?php echo $d['random_code'] ?><?php echo $d['tiket_id'] ?>.pdf"><i class="fa fa-eye"></i></a></td>
                   </tr>
-                  <?php }
+                  <?php } 
                     } else { ?>
                     <tr>
                       <td class="text-center" colspan="9"><i>Tidak Ada Data</i></td>

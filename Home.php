@@ -173,7 +173,6 @@ where pic.id='$id_pic'";
 		$data['main'] = 'tiket/detail';
 		$this->load->view('template/template', $data); 
     }
-
    public function generateRandomString($length = 4)
 	{	
 	  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
