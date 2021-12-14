@@ -48,12 +48,7 @@ class Auth extends CI_Controller {
 		if($this->ion_auth->logged_in()){
 			if($this->ion_auth->is_admin()){
 				$this->session->set_flashdata('info', 'Login Berhasil!');
-				redirect('home/profil','refresh');
-			} else if($this->ion_auth->in_group(2)){
-			 	redirect('operator','refresh');
-			} else if($this->ion_auth->in_group(3)){
-				$this->session->set_userdata('KD_PDM','A004');
-				redirect('koordinator','refresh');
+				redirect('home','refresh');
 			}  else{
 				$this->ion_auth->logout();
 				redirect('login','refresh');
@@ -68,6 +63,7 @@ class Auth extends CI_Controller {
 			redirect('auth/login','refresh');
 		} else{
 			$this->ion_auth->logout();
+			$this->session->clean();
 			redirect('auth','refresh');
 		}
 	}

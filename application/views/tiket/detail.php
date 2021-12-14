@@ -1,3 +1,7 @@
+<?php 
+date_default_timezone_set("Asia/Jakarta");
+$sekarang=date('Y-m-d H:i:s');
+ ?>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -155,7 +159,22 @@
                        <td><?php echo $d['note_2'] ?></td>
                        <td><?php echo $d['note_3'] ?></td>
                         <td><?php echo $d['waktu_pembelian'] ?></td>
-                        <td> <a href="<?php echo "https://hops.id/muslimafest/".$d['order_id'].$d['random_code'].$d['tiket_id'].".pdf"?>"><i class="fa fa-eye"></i></a></td>
+                        <td> <a href="<?php echo "https://hops.id/muslimafest/".$d['order_id'].$d['random_code'].$d['tiket_id'].".pdf"?>"><i class="fa fa-eye"></i></a>
+                          <form action="<?php echo site_url('home/addMasuk') ?>" method="POST">
+                          <input type="hidden" name="id_tiket" value="<?php echo $d['id_tiket'] ?>" >
+                          <input type="hidden" name="userscanner" value="<?php echo $user->username ?>">
+                          <input type="hidden" name="kegiatan" value="Masuk">
+                          <input type="hidden" name="waktu" value="<?php echo $sekarang ?>">
+                          <button type="submit" name="submit" value="submit" class="btn btn-success btn-sm">Masuk</button>
+                        </form><br>
+                         <form action="<?php echo site_url('home/addMasuk') ?>" method="POST">
+                          <input type="hidden" name="id_tiket" value="<?php echo $d['id_tiket'] ?>" >
+                          <input type="hidden" name="userscanner" value="<?php echo $user->username ?>">
+                          <input type="hidden" name="kegiatan" value="Snack">
+                          <input type="hidden" name="waktu" value="<?php echo $sekarang ?>">
+                          <button type="submit" name="submit" value="submit" class="btn btn-primary btn-sm">Snack</button>
+                        </form>
+                        </td>
                   </tr>
                   <?php }
                     } else { ?>

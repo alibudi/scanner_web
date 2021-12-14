@@ -22,6 +22,7 @@
         <li id="menu-profil"><a href="<?php echo base_url('home/profil');?>"><i class="fa fa-users"></i> Profil
         </a></li> 
         <li id="menu-scanner"><a href="<?php echo base_url('home/detail')?>"><i class="fa fa-user"></i> <span>Scanner</span></a></li>
+        <li id="menu-tenan"><a href="<?php echo base_url('home/tenan')?>"><i class="fa fa-user"></i> <span>Tenan</span></a></li>
         <li><a href="<?php echo base_url('auth/logout');?>"><i class="fa fa-sign-out"></i> <span>Keluar</span></a></li>
    
       </ul>

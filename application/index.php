@@ -60,7 +60,7 @@
                             <td><?php echo $d->nohp ?></td>
                             <td><?php echo $d->statuspembayaran ?></td>
                             <td><?php echo $d->waktu_pembelian ?></td>
-                            <td><?php echo ("Rp. ".number_format($d->total_harga,2,',','.')) ?></td>
+                            <td><?php echo  ("Rp. ".number_format($d->total_harga,2,',','.')) ?></td>
                             <td><a class='btn btn-info btn-xs' href="<?php echo base_url('home/detailTiket/'.$d->id) ?>" class=""><i class="fa fa-eye"></i> </a>
                          </td>
                     <!--     <td style="text-align: center;">

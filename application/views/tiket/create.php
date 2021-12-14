@@ -62,7 +62,7 @@ $tomorrow=date('Y-m-d h:i:s');
                 </div>  
                  <label for="username" class="col-sm-2 control-label">Jumlah Tiket</label>
                 <div class="col-sm-3">
-                  <input type="text" name="note_1" id="jumlah"  class="form-control" placeholder="Jumlah Tiket">
+                  <input type="text" name="note_1" id="jumlah"  maxlength="2" class="form-control" placeholder="Jumlah Tiket">
                   <?php echo form_error('note_1');?>
                 </div>                
               </div>
@@ -75,7 +75,7 @@ $tomorrow=date('Y-m-d h:i:s');
                 </div>  
                  <label for="username" class="col-sm-2 control-label">Jumlah Tiket</label>
                 <div class="col-sm-3">
-                  <input type="text" name="note_2" id="jumlah1"  class="form-control" placeholder="Jumlah Tiket">
+                  <input type="text" name="note_2" id="jumlah1" maxlength="2" class="form-control" placeholder="Jumlah Tiket">
                   <?php echo form_error('note_2');?>
                 </div>                
               </div>
@@ -88,7 +88,7 @@ $tomorrow=date('Y-m-d h:i:s');
                 </div>  
                  <label for="username" class="col-sm-2 control-label">Jumlah Tiket</label>
                 <div class="col-sm-3">
-                  <input type="text" name="note_3" id="jumlah2"  class="form-control" placeholder="Jumlah Tiket">
+                  <input type="text" name="note_3" id="jumlah2" maxlength="2"  class="form-control" placeholder="Jumlah Tiket">
                   <?php echo form_error('note_3');?>
                 </div>                
               </div>

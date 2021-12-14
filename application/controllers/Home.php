@@ -11,9 +11,12 @@ class Home extends CI_Controller {
 	   }
 	public function index()
 	{
-		$data['user'] 		= $this->ion_auth->user()->row();
-		$id_user 	  = $data['user']->username;
-		$this->load->view('home/index',$data);	
+		$data['user'] = $this->ion_auth->user()->row();
+		$data['id_user'] 	  = $data['user']->username;
+		$id_user = $data['user']->id;
+		$data['tiket'] = $this->ModelScanner->getTiket();
+		$data['main'] = 'tiket/index';
+		$this->load->view('template/template', $data, FALSE);
 	}
 
 	public function addSnack()
@@ -41,6 +44,33 @@ class Home extends CI_Controller {
       	redirect('home/detail','refresh');
    	 	}
   	}
+
+  	public function addMasuk()
+	{
+    	$this->form_validation->set_rules('id_tiket', 'ID Scanner','trim|required');
+    	$this->form_validation->set_rules('userscanner', 'Username','trim|required');
+    	$this->form_validation->set_rules('kegiatan', 'Activitas','trim|required');
+    	if ($this->form_validation->run() == TRUE) {
+        	 $data = array(
+        	'id_tiket' => $this->input->post('id_tiket'),
+        	'userscanner'=> $this->input->post('userscanner'),
+        	'kegiatan'=> $this->input->post('kegiatan'),
+        	'waktu'=> $this->input->post('waktu'),
+        	);
+    	$cek = $this->ModelScanner->addData($data);
+    	if ($cek) {
+      	$this->session->set_flashdata('info', 'Tambah Data sukses');
+      	redirect('home','refresh');
+    	}else{
+      	$this->session->set_flashdata('info', 'Tambah Data Gagal');
+      	redirect('home','refresh');
+    	} 
+    	}else{
+      	$this->session->set_flashdata('info', 'Tambah Data Gagal');
+      	redirect('home','refresh');
+   	 	}
+  	}
+
 
 	public function detail()
 	{
@@ -136,7 +166,7 @@ class Home extends CI_Controller {
    //       inner join activity on tiket.id =  activity.id_tiket
    //       inner join pic on tiket.id_pic = pic.id 
    //       where tiket.id='".$id_pic."'";
-		$myTicket = "SELECT pic.*,'10000'+tiket.id as tiket_id, tiket.id_pic,tiket.random_code,summary_tiket.* from pic
+		$myTicket = "SELECT pic.*,'10000'+tiket.id as tiket_id, tiket.id as id_tiket, tiket.id_pic,tiket.random_code,summary_tiket.* from pic
 join tiket on pic.id = tiket.id_pic
 join summary_tiket on pic.id = summary_tiket.id_pic
 where pic.id='$id_pic'";
@@ -193,52 +223,79 @@ where pic.id='$id_pic'";
 		$this->load->view('template/template',$data);
 	}
 
+	// public function addTenan2()
+	// {
+	// 	//set validasi
+ //        $this->form_validation->set_rules('id_tenan','Id Tenan','required');
+ //        $this->form_validation->set_rules('nama','Nama','required');
+
+ //        if($this->form_validation->run() == TRUE){
+
+ //            $data = array(
+ //                'id_tenan' => $this->input->post("id_tenan"),
+ //                'nama'     => $this->input->post("nama"),
+ //            );
+
+ //            $simpan = $this->ModelScanner->AddTenan($data);
+
+ //            if($simpan) {
+
+ //                header('Content-Type: application/json');
+ //                echo json_encode(
+ //                    array(
+ //                        'success' => true,
+ //                        'message' => 'Data Berhasil Disimpan!'
+ //                    )
+ //                );
+
+ //            } else{
+ //                header('Content-Type: application/json');
+ //                echo json_encode(
+ //                    array(
+ //                        'success' => false,
+ //                        'message' => 'Data Gagal Disimpan!'
+ //                    )
+ //                );
+ //            }
+
+ //        }else{
+ //            header('Content-Type: application/json');
+ //            echo json_encode(
+ //                array(
+ //                    'success'    => false,
+ //                    'message'    => validation_errors()
+ //                )
+ //            );
+
+ //        }
+	// }
+
 	public function addTenan()
 	{
-		//set validasi
-        $this->form_validation->set_rules('id_tenan','Id Tenan','required');
-        $this->form_validation->set_rules('nama','Nama','required');
-
-        if($this->form_validation->run() == TRUE){
-
-            $data = array(
-                'id_tenan' => $this->input->post("id_tenan"),
-                'nama'     => $this->input->post("nama"),
-            );
-
-            $simpan = $this->ModelScanner->AddTenan($data);
-
-            if($simpan) {
-
-                header('Content-Type: application/json');
-                echo json_encode(
-                    array(
-                        'success' => true,
-                        'message' => 'Data Berhasil Disimpan!'
-                    )
-                );
-
-            } else{
-                header('Content-Type: application/json');
-                echo json_encode(
-                    array(
-                        'success' => false,
-                        'message' => 'Data Gagal Disimpan!'
-                    )
-                );
-            }
-
-        }else{
-            header('Content-Type: application/json');
-            echo json_encode(
-                array(
-                    'success'    => false,
-                    'message'    => validation_errors()
-                )
-            );
-
-        }
-	}
+    	$this->form_validation->set_rules('id_tenan', 'ID Scanner','trim|required');
+    	$this->form_validation->set_rules('userscanner', 'Username','trim|required');
+    	$this->form_validation->set_rules('kegiatan', 'Activitas','trim|required');
+    	if ($this->form_validation->run() == TRUE) {
+        	 $data = array(
+        	'id_tenan' => $this->input->post('id_tenan'),
+        	'userscanner'=> $this->input->post('userscanner'),
+        	'nama'=> $this->input->post('nama'),
+        	'kegiatan'=> $this->input->post('kegiatan'),
+        	'waktu'=> $this->input->post('waktu'),
+        	);
+    	$cek = $this->ModelScanner->AddTenan($data);
+    	if ($cek) {
+      	$this->session->set_flashdata('info', 'Tambah Data sukses');
+      	redirect('home/tenan','refresh');
+    	}else{
+      	$this->session->set_flashdata('info', 'Tambah Data Gagal');
+      	redirect('home/tenan','refresh');
+    	} 
+    	}else{
+      	$this->session->set_flashdata('info', 'Tambah Data Gagal');
+      	redirect('home/tenan','refresh');
+   	 	}
+  	}
 
 }
 

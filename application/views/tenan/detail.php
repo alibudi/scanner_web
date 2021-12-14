@@ -30,7 +30,7 @@ $sekarang=date('Y-m-d H:i:s');
             <?php } ?>
    -->
     
-            <form class="form-horizontal" method="post" action="<?php echo site_url('home/addSnack') ?>">
+            <form class="form-horizontal" method="post" action="<?php echo site_url('home/addTenan') ?>">
               <div class="form-group">
                 <div id="qr-reader"></div>
                 <div id="qr-reader-results"></div> 
@@ -40,14 +40,21 @@ $sekarang=date('Y-m-d H:i:s');
               <div class="form-group">
                 <label for="username" class="col-sm-3 control-label">ID tiket</label>
                 <div class="col-sm-9">
-                  <input id="codee" type="text" name="id_tiket"   class="form-control" placeholder="Id Tiket" >
+                  <input id="codee" type="text"    class="form-control" placeholder="Id Tiket" >
                 </div>                
               </div>
 
               <div class="form-group">
                 <label for="username" class="col-sm-3 control-label">Nama</label>
                 <div class="col-sm-9">
-                  <input type="text" name="nama" id="code_tenan"  class="form-control" placeholder="Nama" disabled>
+                  <input type="text" name="nama" class="form-control" placeholder="Nama" >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="username" class="col-sm-3 control-label">Kode Tenan</label>
+                <div class="col-sm-9">
+                  <input type="text" name="id_tenan" id="code_tenan"  class="form-control" placeholder="Nama" >
                 </div>
               </div>
 
@@ -88,7 +95,7 @@ $sekarang=date('Y-m-d H:i:s');
 
 <script>
   $(document).ready(function(){
-    $("#menu-scanner").addClass("active");
+    $("#menu-tenan").addClass("active");
   });
 </script>
 
@@ -127,7 +134,7 @@ $sekarang=date('Y-m-d H:i:s');
                 // .then(data => console.log(data));
 
                 var xhr = new XMLHttpRequest();
-                var url = "http://localhost/panitia/Api/detailTenan/";
+                var url = "https://www.hops.id/panitia/api/tenan.php?id=";
                 // var url2 = "&kegiatan=masuk";
                 xhr.withCredentials = true;
                 console.log("cek");
@@ -143,14 +150,14 @@ $sekarang=date('Y-m-d H:i:s');
                       tiket.forEach(function(daftar){
                         random_code +=`${daftar.random_code}`;
                         code_tenan +=`${daftar.code_tenan}`;
-                        console.log(nama);
-                        console.log(status);
+                        // console.log(random_code);
+                        // console.log(code_tenan);
                       });
 
                       // var b = JSON.parse(this.responseText[0].nama);
                       // console.log(b);
-                    document.getElementById('nama').value = random_code;
-                    document.getElementById('status').value = code_tenan;
+                    // document.getElementById('random_code') = random_code;
+                    document.getElementById('code_tenan').value = code_tenan;
                
                   } 
                 });

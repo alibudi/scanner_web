@@ -85,28 +85,37 @@ public function __construct(){
     public function detailTenan($id)
     {
         $id = $this->uri->segment(3);
-        $tenan = $this->ModelScanner->getTenanById($id)->row();
-
-        if ($tenan) {
-            header('Content-Type: application/json');
-            echo json_encode(
-                array(
-                    'success' => true,
-                    'data'    => array(
-                        'random_code' => $tenan->random_code,
-                        'code_tenan'     => $tenan->code_tenan   
-                    )  
-                )
-            );
-        } else {
-             header('Content-Type: application/json');
-            echo json_encode(
-                array(
-                    'success' => false,
-                    'message' => 'Data Siswa Tidak Ditemukan!'
-                )
-            );
-        }
+        $data['tenan'] = $this->ModelScanner->getTenanById($id)->result();
+         // $data=[];
+         header('Content-Type: application/json');
+         
+        echo json_encode($data); 
+         // echo json_encode(
+          
+         //    $data[
+         //         'random_code' => $tenan->random_code,
+         //     ],
+         // );
+        // if ($tenan) {
+        //     header('Content-Type: application/json');
+        //     echo json_encode(
+        //         array(
+        //             'success' => true,
+        //             'data'    => array(
+        //                 'random_code' => $tenan->random_code,
+        //                 'code_tenan'     => $tenan->code_tenan   
+        //             )  ,
+        //         )
+        //     );
+        // } else {
+        //      header('Content-Type: application/json');
+        //     echo json_encode(
+        //         array(
+        //             'success' => false,
+        //             'message' => 'Data Siswa Tidak Ditemukan!'
+        //         )
+        //     );
+        // }
     }
 
 }
