@@ -19,6 +19,8 @@
         <li id="menu-trafic"><a href="<?php echo base_url('admin/total');?>"><i class="fa fa-users"></i> Data User</a></li>-->
         <li id="menu-tiket"><a href="<?php echo base_url('home/tiket');?>"><i class="fa fa-users"></i> Tiket
         </a></li> 
+        <li id="menu-profil"><a href="<?php echo base_url('lomba');?>"><i class="fa fa-book"></i> Lomba
+        </a></li> 
         <li id="menu-profil"><a href="<?php echo base_url('home/profil');?>"><i class="fa fa-users"></i> Profil
         </a></li> 
         <li id="menu-scanner"><a href="<?php echo base_url('home/detail')?>"><i class="fa fa-user"></i> <span>Scanner</span></a></li>
