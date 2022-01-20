@@ -11,12 +11,16 @@ class ModelScanner extends CI_Model
 	}
  public function getTenan()
     {
-        // $this->db->select("*");
-        // $this->db->from("tenan");
-        // $this->db->order_by("id", "DESC");
-        // return $this->db->get();
         $sql = $this->db->get('tenan');
 		return $sql->result();
+    }
+
+    public function getActivity($id)
+    {
+    	$this->db->select("*");
+        $this->db->from("activity");
+        $this->db->where("id_tiket", $id);
+        return $this->db->get();
     }
 
    public function getTenanById($id)
@@ -192,7 +196,7 @@ class ModelScanner extends CI_Model
 
 
 		$result=$this->getTiketByIdPic($pic_id);
-		print_r($result);
+		// print_r($result);
 
 
 

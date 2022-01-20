@@ -4,7 +4,7 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Muslima Festival</title>
+  <title>Good Hops</title>
   <link rel="icon" href="https://www.hops.id/muslimafest/assets/images/logo-muslima-fest-2021.png" type="image/x-icon"> 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -51,7 +51,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Y</b>S</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Muslima Festival</b></span>
+      <span class="logo-lg"><b>Good Hops</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

@@ -159,47 +159,28 @@ class Home extends CI_Controller {
 		$data['id_user'] 	  = $data['user']->username;
 		$id_user = $data['user']->id;
 		$data['tiket'] = $this->ModelScanner->getTiketById($id);
-		// var_dump($data['tiket']);
-		// die();
 		$id_pic = $data['tiket']->id_pic;
-		 // $myTicket = "SELECT tiket.id,tiket.id_pic,tiket.order_id,tiket.random_code,pic.nama,pic.email,'10000'+tiket.id from tiket
-   //       inner join activity on tiket.id =  activity.id_tiket
-   //       inner join pic on tiket.id_pic = pic.id 
-   //       where tiket.id='".$id_pic."'";
 		$myTicket = "SELECT pic.*,'10000'+tiket.id as tiket_id, tiket.id as id_tiket, tiket.id_pic,tiket.random_code,summary_tiket.* from pic
-join tiket on pic.id = tiket.id_pic
-join summary_tiket on pic.id = summary_tiket.id_pic
-where pic.id='$id_pic'";
+				join tiket on pic.id = tiket.id_pic
+			join summary_tiket on pic.id = summary_tiket.id_pic
+			where pic.id='$id_pic'";
       
         
         $myTicket = $this->ModelScanner->getQuery($myTicket);
        
-						foreach($myTicket as $ticket){ 
-                            $codeTicket =  $ticket['order_id'] . $ticket['random_code'] . $ticket["tiket_id"];
+						// foreach($myTicket as $ticket){ 
+      //                       $codeTicket =  $ticket['order_id'] . $ticket['random_code'] . $ticket["tiket_id"];
      
-                        }
+      //                   }
         $data['statusTicket'] = $myTicket;
-        // var_dump($myTicket);
-        // die;
-        $this->load->library('ciqrcode'); //pemanggilan library QR CODE
- 
-        $config['cacheable']    = true; //boolean, the default is true
-        $config['cachedir']     = './assets/'; //string, the default is application/cache/
-        $config['errorlog']     = './assets/'; //string, the default is application/logs/
-        $config['imagedir']     = '/assets/images/'; //direktori penyimpanan qr code
-        $config['quality']      = true; //boolean, the default is true
-        $config['size']         = '1024'; //interger, the default is 1024
-        $config['black']        = array(224,255,255); // array, default is array(255,255,255)
-        $config['white']        = array(70,130,180); // array, default is array(0,0,0)
-        $this->ciqrcode->initialize($config);
-        $image_name=$codeTicket.'.png'; //buat name dari qr code sesuai dengan nim
-        $allData = $codeTicket;
-        $params['data'] = $codeTicket; //data yang akan di jadikan QR CODE
-        $params['level'] = 'H'; //H=High
-        $params['size'] = 10;
-        
-        $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
-        $data['qrnya'] = $this->ciqrcode->generate($params);
+      	// $d = $this->ModelScanner->getActivity($id);
+      	$c  = "SELECT pic.*, tiket.id as id_tiket, tiket.id_pic,tiket.random_code	,activity.* from pic
+				join tiket on pic.id = tiket.id_pic
+			-- join summary_tiket on pic.id = summary_tiket.id_pic
+			join activity on activity.id_tiket = tiket.id
+			where pic.id='$id_pic'";
+      	$data['activity'] = $this->ModelScanner->getQuery($c);
+      	// print_r($data);
 		$data['main'] = 'tiket/detail';
 		$this->load->view('template/template', $data); 
     }

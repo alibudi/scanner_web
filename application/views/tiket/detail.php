@@ -1,6 +1,6 @@
 <?php 
 date_default_timezone_set("Asia/Jakarta");
-$sekarang=date('Y-m-d H:i:s');
+$sekarang=date('Y-m-d H:i');
  ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -13,7 +13,7 @@ $sekarang=date('Y-m-d H:i:s');
     <div class="col-md-12">
       <div class="box box-primary">
           <div class="box-header with-border">
-            <h3 class="box-title">Tambah Tiket</h3>
+            <h3 class="box-title">Data Tiket</h3>
 
             <div class="box-tools pull-right">
               <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -69,13 +69,13 @@ $sekarang=date('Y-m-d H:i:s');
               </div>
 
                <div class="form-group">
-                <label for="username" class="col-sm-3 control-label">Jumlah Tiket Hari ke 1</label>
+                <label for="username" class="col-sm-3 control-label">Jumlah Tiket</label>
                 <div class="col-sm-9">
                   <input type="text" name="nohp" value="<?php echo $tiket->note_1 ?>" class="form-control" placeholder="No Hp" disabled>
                   <?php echo form_error('No Hp');?>
                 </div>                
               </div>
-
+<!-- 
           <div class="form-group">
                 <label for="username" class="col-sm-3 control-label">Jumlah Tiket Hari ke 2</label>
                 <div class="col-sm-9">
@@ -91,7 +91,7 @@ $sekarang=date('Y-m-d H:i:s');
                   <?php echo form_error('No Hp');?>
                 </div>                
               </div>
-
+ -->
              
             </form>             
           </div>
@@ -107,7 +107,7 @@ $sekarang=date('Y-m-d H:i:s');
     ?>
 <!-- <?php print_r($statusTicket) ?>  -->
 
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="box box-info">
           <div class="box-header with-border">
             <h3 class="box-title">Data</h3>
@@ -137,16 +137,15 @@ $sekarang=date('Y-m-d H:i:s');
                       <tr>
                           <th>No</th>
                           <th>Kode Barcode</th>
-                          <th>Hari 1</th>
-                          <th>Hari 2</th>
-                          <th>Hari 3</th>
                           <th>Waktu Pembelian</th>
                           <th>Barcode</th>
+                          <!-- <th>Hari 1</th> -->
                           <!-- <th>Foto</th> -->
-                          <!-- <th style="text-align: center;">Aksi</th> -->
+                          <th style="text-align: center;">Aksi</th>
                       </tr>
                   </thead>
                   <tbody>
+
                      <?php 
                   $no = 1;
                   if($statusTicket!=null){
@@ -155,26 +154,18 @@ $sekarang=date('Y-m-d H:i:s');
                   <tr>
                        <td><?php echo $no++ ?></td>
                        <td><?php echo $d['order_id']?><?php echo $d['random_code'] ?><?php echo $d['tiket_id'] ?></td>
-                       <td><?php echo $d['note_1'] ?></td>
-                       <td><?php echo $d['note_2'] ?></td>
-                       <td><?php echo $d['note_3'] ?></td>
                         <td><?php echo $d['waktu_pembelian'] ?></td>
-                        <td> <a href="<?php echo "https://hops.id/muslimafest/".$d['order_id'].$d['random_code'].$d['tiket_id'].".pdf"?>"><i class="fa fa-eye"></i></a>
+                        <td> <a href="<?php echo "https://hops.id/muslimafest/tiket/".$d['order_id'].$d['random_code'].$d['tiket_id'].".pdf"?>"><i class="fa fa-eye"></i></a>
+                        </td>
+                        <td>
                           <form action="<?php echo site_url('home/addMasuk') ?>" method="POST">
                           <input type="hidden" name="id_tiket" value="<?php echo $d['id_tiket'] ?>" >
                           <input type="hidden" name="userscanner" value="<?php echo $user->username ?>">
                           <input type="hidden" name="kegiatan" value="Masuk">
                           <input type="hidden" name="waktu" value="<?php echo $sekarang ?>">
                           <button type="submit" name="submit" value="submit" class="btn btn-success btn-sm">Masuk</button>
-                        </form><br>
-                         <form action="<?php echo site_url('home/addMasuk') ?>" method="POST">
-                          <input type="hidden" name="id_tiket" value="<?php echo $d['id_tiket'] ?>" >
-                          <input type="hidden" name="userscanner" value="<?php echo $user->username ?>">
-                          <input type="hidden" name="kegiatan" value="Snack">
-                          <input type="hidden" name="waktu" value="<?php echo $sekarang ?>">
-                          <button type="submit" name="submit" value="submit" class="btn btn-primary btn-sm">Snack</button>
                         </form>
-                        </td>
+                      </td>
                   </tr>
                   <?php }
                     } else { ?>
@@ -191,13 +182,66 @@ $sekarang=date('Y-m-d H:i:s');
         <!-- /.box-footer-->
       </div>
       <!-- /.box -->
+
+      <div class="col-md-6">
+      <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">Data</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div> 
+      <!-- Default box -->
+        <div class="box-body">
+        <?php if($this->session->flashdata('info')){ ?>
+                <div class="alert alert-warning alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <?php echo $this->session->flashdata('info'); ?>
+                </div>
+            <?php } ?>
+            <br /><br />
+            <div class="table-responsive">
+              <table width="100%" class="table table-striped table-bordered table-hover" id="table2">
+                  <thead>
+                      <tr>
+                          <th>No</th>
+                          <th>Kode Barcode</th>
+                          <th>Kegiatan</th>
+                          <th>Waktu</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $no = 1;
+                     foreach($activity as $d){ ?>
+                    <tr>
+                      <td><?php echo $no++ ?></td>
+                      <td><?php echo $d['id_tiket'] ?></td>
+                      <td><?php echo $d['kegiatan'] ?></td>
+                      <td><?php echo $d['waktu'] ?></td>
+                    </tr>
+                    <?php } ?>           
+            </tbody>
+              </table>
+              </div>
+              </div>
+        <!-- /.box-body -->
+        </div>
+        <!-- /.box-footer-->
+      </div>
+      <!-- /.box -->
   </section>
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-
 <script>
   $(document).ready(function(){
     $("#menu-tiket").addClass("active");
+     $('#table').DataTable({
+    });
+     $('#table2').DataTable({
+    });
   });
 </script>

@@ -9,7 +9,23 @@ class ModelScanner extends CI_Model
 		$sql = $this->db->get('tiket');
 		return $sql->result();
 	}
+ public function getTenan()
+    {
+        // $this->db->select("*");
+        // $this->db->from("tenan");
+        // $this->db->order_by("id", "DESC");
+        // return $this->db->get();
+        $sql = $this->db->get('tenan');
+		return $sql->result();
+    }
 
+   public function getTenanById($id)
+   {
+   		$this->db->select("*");
+        $this->db->from("tenan");
+        $this->db->where("id", $id);
+        return $this->db->get();
+   }
 	public function addData($data)
 	{
 		$sql = $this->db->insert('activity', $data);
@@ -19,6 +35,16 @@ class ModelScanner extends CI_Model
 			return false;
 		}
 	}
+
+	public function AddTenan($data)
+		{
+			$sql = $this->db->insert('activity_tenan', $data);
+			if ($sql) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 
 	public function getTiket()
 	{
@@ -148,16 +174,16 @@ class ModelScanner extends CI_Model
 		$harike='1';
 		$backgroundcolor="darkseagreen";
 		$tanggal="17 Desember 2021";
-		$this->generateTiket($pic_id,$this->input->post('info_1', true), $harike, $this->input->post('order_id', true), $tanggal, $backgroundcolor,$this->email);
+		$this->generateTiket($pic_id,$this->input->post('note_1', true), $harike, $this->input->post('order_id', true), $tanggal, $backgroundcolor,$this->email);
 
 		$harike='2';
 		$backgroundcolor="lightpink";
 		$tanggal="18 Desember 2021";
-		$this->generateTiket($pic_id,$this->input->post('info_2', true), $harike, $this->input->post('order_id', true), $tanggal, $backgroundcolor,$this->email);
+		$this->generateTiket($pic_id,$this->input->post('note_2', true), $harike, $this->input->post('order_id', true), $tanggal, $backgroundcolor,$this->email);
 		$harike='3';
 		$backgroundcolor="lightblue";
 		$tanggal="19 Desember 2021";
-		$this->generateTiket($pic_id,$this->input->post('info_3', true), $harike, $this->input->post('order_id', true), $tanggal, $backgroundcolor,$this->email);
+		$this->generateTiket($pic_id,$this->input->post('note_3', true), $harike, $this->input->post('order_id', true), $tanggal, $backgroundcolor,$this->email);
 
 		$this->db->trans_complete();
 
@@ -283,6 +309,8 @@ class ModelScanner extends CI_Model
 		// echo $randomString;
 		return $randomString;
 	}
+
+
 }
 
 /* End of file ModelScanner.php */

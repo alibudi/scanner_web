@@ -29,19 +29,20 @@
         <a href="<?php echo base_url('home/add');?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a><br><br>
             <div class="table-responsive">
              <?php if($tiket!=null){?>
-              <table  class="table table-striped table-bordered table-hover" id="table">
+              <table width="100%" class="table table-striped table-bordered table-hover" id="table">
                     <?php } else { ?>
-              <table  class="table table-hover">
+              <table width="100%" class="table table-striped table-bordered table-hover">
             <?php } ?>
                   <thead>
                       <tr>
                           <th>No</th>
+                          <th>Nama Peserta</th>
+                          <th>Lomba</th>
+                          <th>Kategori</th>
                           <th>Nama</th>
-                          <th>Email</th>
                           <th>No Hp</th>
                           <th>Status</th>
                           <th>Waktu Pembelian</th>
-                          <th>Total</th>
                           <!-- <th>View</th> -->
                           <th style="text-align: center;">Aksi</th>
                       </tr>
@@ -56,11 +57,12 @@
                        <td><?php echo $no++ ?></td>
                        <!-- <td><?php echo $d->id_pic ?></td> -->
                        <td><?php echo $d->nama?></td>
-                            <td><?php echo $d->email?></td>
+                            <td><?php echo $d->namalomba?></td>
+                       <td><?php echo $d->kategori?></td>
+                       <td><?php echo $d->namaPeserta?></td>
                             <td><?php echo $d->nohp ?></td>
                             <td><?php echo $d->statuspembayaran ?></td>
                             <td><?php echo $d->waktu_pembelian ?></td>
-                            <td><?php echo $d->total_harga ?></td>
                             <td><a class='btn btn-info btn-xs' href="<?php echo base_url('home/detailTiket/'.$d->id) ?>" class=""><i class="fa fa-eye"></i> </a>
                          </td>
                     <!--     <td style="text-align: center;">

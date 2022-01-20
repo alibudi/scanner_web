@@ -14,13 +14,10 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-      <!--   <li id="menu-beranda"><a href="<?php echo base_url('admin')?>"><i class="fa fa-dashboard"></i> Beranda</a></li>
-        <li id="menu-redem"><a href="<?php echo base_url('admin/total_redem');?>"><i class="fa fa-book"></i> Data Redeem</a></li>
-        <li id="menu-trafic"><a href="<?php echo base_url('admin/total');?>"><i class="fa fa-users"></i> Data User</a></li>-->
         <li id="menu-tiket"><a href="<?php echo base_url('home/tiket');?>"><i class="fa fa-users"></i> Tiket
         </a></li> 
-        <li id="menu-profil"><a href="<?php echo base_url('lomba');?>"><i class="fa fa-book"></i> Lomba
-        </a></li> 
+<!--         <li id="menu-profil"><a href="<?php echo base_url('lomba');?>"><i class="fa fa-book"></i> Lomba
+        </a></li>  -->
         <li id="menu-profil"><a href="<?php echo base_url('home/profil');?>"><i class="fa fa-users"></i> Profil
         </a></li> 
         <li id="menu-scanner"><a href="<?php echo base_url('home/detail')?>"><i class="fa fa-user"></i> <span>Scanner</span></a></li>
